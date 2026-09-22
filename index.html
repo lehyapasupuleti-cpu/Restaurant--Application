@@ -1,0 +1,595 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Spice Garden Restaurant</title>
+
+  <style>
+    /* =========================
+       GLOBAL STYLES
+    ========================== */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #fff8f0;
+      color: #333;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    #main-header {
+      background: #8b0000;
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    #main-header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    #main-header p {
+      margin: 5px 0;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================== */
+
+    #main-nav {
+      background-color: #333;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    #main-nav ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    #main-nav ul li {
+      margin: 0;
+    }
+
+    #main-nav ul li a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 12px 18px;
+      transition: background-color 0.3s;
+    }
+
+    #main-nav ul li a:hover {
+      background-color: #e67e22;
+    }
+
+    /* =========================
+       MAIN CONTENT
+    ========================== */
+
+    main {
+      padding-top: 170px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+      padding: 30px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .section:hover {
+      transform: translateY(-3px);
+      transition: 0.3s;
+    }
+
+    .section h2 {
+      color: #8b0000;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .section > p {
+      text-align: center;
+      color: #666;
+    }
+
+    /* =========================
+       HOME SECTION
+    ========================== */
+
+    .welcome {
+      text-align: center;
+      padding: 30px;
+      background-color: #fff0d9;
+      border-radius: 10px;
+    }
+
+    .welcome h2 {
+      font-size: 2rem;
+      color: #8b0000;
+    }
+
+    .welcome p {
+      font-size: 1.1rem;
+    }
+
+    .button {
+      display: inline-block;
+      background-color: #e67e22;
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .button:hover {
+      background-color: #d35400;
+    }
+
+    /* =========================
+       MENU
+    ========================== */
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .menu-card {
+      background-color: #fff8f0;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .menu-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .menu-card h3 {
+      color: #8b0000;
+    }
+
+    .price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #e67e22;
+    }
+
+    /* =========================
+       BOOKING FORM
+    ========================== */
+
+    .form {
+      max-width: 650px;
+      margin: auto;
+      background-color: #fff8f0;
+      padding: 25px;
+      border-radius: 10px;
+    }
+
+    .form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form input,
+    .form select,
+    .form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .form input[type="submit"] {
+      background-color: #8b0000;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .form input[type="submit"]:hover {
+      background-color: #e67e22;
+    }
+
+    /* =========================
+       TABLE
+    ========================== */
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th,
+    table td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+    }
+
+    table th {
+      background-color: #8b0000;
+      color: white;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #fff8f0;
+    }
+
+    /* =========================
+       SPECIAL OFFERS
+    ========================== */
+
+    .offers {
+      text-align: center;
+      background-color: #fff0d9;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .offers h3 {
+      color: #8b0000;
+    }
+
+    /* =========================
+       MULTIMEDIA
+    ========================== */
+
+    .media {
+      text-align: center;
+    }
+
+    .media video {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    /* =========================
+       CONTACT
+    ========================== */
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact address {
+      font-style: normal;
+      line-height: 2;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    #main-footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #main-footer a {
+      color: #f39c12;
+      text-decoration: none;
+    }
+
+    /* =========================
+       RESPONSIVE DESIGN
+    ========================== */
+
+    @media (max-width: 600px) {
+
+      #main-header h1 {
+        font-size: 1.4rem;
+      }
+
+      #main-nav ul {
+        flex-direction: column;
+      }
+
+      #main-nav ul li a {
+        text-align: center;
+      }
+
+      main {
+        padding-top: 260px;
+      }
+
+      .section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header id="main-header">
+
+    <div class="container">
+
+      <h1>🍴 Spice Garden Restaurant</h1>
+
+      <p>Delicious Food • Great Taste • Happy Moments</p>
+
+      <nav id="main-nav">
+
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#booking">Book Table</a></li>
+          <li><a href="#offers">Offers</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================== -->
+
+  <main class="container">
+
+    <!-- HOME -->
+
+    <section id="home" class="section">
+
+      <div class="welcome">
+
+        <h2>Welcome to Spice Garden</h2>
+
+        <p>
+          Experience delicious Indian cuisine prepared with fresh
+          ingredients and authentic spices.
+        </p>
+
+        <a href="#menu" class="button">View Our Menu</a>
+
+      </div>
+
+    </section>
+
+
+    <!-- MENU -->
+
+    <section id="menu" class="section">
+
+      <h2>🍽️ Our Menu</h2>
+
+      <p>Explore some of our popular dishes.</p>
+
+      <div class="menu-grid">
+
+        <div class="menu-card">
+
+          <img
+            src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=500&q=80"
+            alt="Chicken Biryani"
+          >
+
+          <h3>Chicken Biryani</h3>
+
+          <p>
+            Aromatic basmati rice cooked with tender chicken
+            and special spices.
+          </p>
+
+          <p class="price">₹250</p>
+
+        </div>
+
+
+        <div class="menu-card">
+
+          <img
+            src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=500&q=80"
+            alt="Paneer Curry"
+          >
+
+          <h3>Paneer Curry</h3>
+
+          <p>
+            Soft paneer cooked in a rich and creamy Indian gravy.
+          </p>
+
+          <p class="price">₹200</p>
+
+        </div>
+
+
+        <div class="menu-card">
+
+          <img
+            src="https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=500&q=80"
+            alt="Masala Dosa"
+          >
+
+          <h3>Masala Dosa</h3>
+
+          <p>
+            Crispy dosa served with delicious potato masala.
+          </p>
+
+          <p class="price">₹100</p>
+
+        </div>
+
+
+        <div class="menu-card">
+
+          <img
+            src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=500&q=80"
+            alt="Gulab Jamun"
+          >
+
+          <h3>Gulab Jamun</h3>
+
+          <p>
+            Soft and sweet traditional Indian dessert.
+          </p>
+
+          <p class="price">₹80</p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MENU TABLE -->
+
+    <section class="section">
+
+      <h2>📋 Food Menu</h2>
+
+      <table>
+
+        <caption>Restaurant Menu & Prices</caption>
+
+        <thead>
+
+          <tr>
+            <th>Item</th>
+            <th>Category</th>
+            <th>Price</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Chicken Biryani</td>
+            <td>Main Course</td>
+            <td>₹250</td>
+          </tr>
+
+          <tr>
+            <td>Paneer Curry</td>
+            <td>Main Course</td>
+            <td>₹200</td>
+          </tr>
+
+          <tr>
+            <td>Masala Dosa</td>
+            <td>Breakfast</td>
+            <td>₹100</td>
+          </tr>
+
+          <tr>
+            <td>Veg Fried Rice</td>
+            <td>Rice</td>
+            <td>₹180</td>
+          </tr>
+
+          <tr>
+            <td>Gulab Jamun</td>
+            <td>Dessert</td>
+            <td>₹80</td>
+          </tr>
+
+        </tbody>
+
+        <tfoot>
+
+          <tr>
+            <td colspan="3">
+              Prices may vary based on availability.
+            </td>
+          </tr>
+
+        </tfoot>
+
+      </table>
+
+    </section>
+
+
+    <!-- BOOKING -->
+
+    <section id="booking" class="section">
+
+      <h2>📅 Book a Table</h2>
+
+      <p>Reserve your table with us.</p>
+
+      <form class="form">
+
+        <label for="name">Full Name:</label>
+
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Enter your name"
+          required
+        >
+
+
+        <label for="email">Email:</label>
+
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter
+```
